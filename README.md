@@ -1,6 +1,6 @@
 # react-forms
-A form handling class for retrieving and reducing nested form data.
-https://github.com/wfknowles/react-forms
+A form handling class for retrieving and reducing nested form data in React.
+
 
 ## Sample Component & Library Usage
 
@@ -70,7 +70,7 @@ https://github.com/wfknowles/react-forms
 ```
 
 ## Questions or Improvements?
-Github: https://github.com/wfknowles/
+Github: https://github.com/wfknowles/react-forms<br>
 Email: will@willknowles.com
 
 ## Contribution
