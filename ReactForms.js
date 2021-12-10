@@ -1,25 +1,9 @@
-import titleize from './lib/titleize';
-
 class ReactForms {
 
   constructor() {
 
     this.debug = true;
 
-  }
-
-  titleize(string) {
-
-    try {
-
-      return titleize(string);
-
-    } catch (error) {
-
-      throw new SyntaxError(`ReactFormDataError: ${error}`);
-
-    }
-    
   }
 
   value(event) {
