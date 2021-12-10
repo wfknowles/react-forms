@@ -2,69 +2,45 @@
 A form handling class for retrieving and reducing nested form data in React.
 
 
-## Sample Component & Library Usage
+## Sample Library Usage
 
 ```
-    import React, { useState } from 'react'
-    import ReactForms from 'ReactForm.js'
+    import ReactForms from '../utils/ReactForms';
 
-    import { useAppContext } from '../GlobalState';
-    import { SOME_ACTION } from '../actions';
+    const [ formState, setFormState] = useState({someModel: {}});
 
-    function formComponent() {
-        const [ state, dispatch ] = useAppContext();
-        const { stateObj } = state;
+    const handleChange = (e) => {
 
-        const changeHandler = (e) => {
-
-        // using ReactForms for retrieving and reducing form object
         const inputData = ReactForms.value(e);
-        const reducedState = ReactForms.reduce({ stateObj }, inputData);
+        const reducedFormState = ReactForms.reduce(formState, inputData);
 
-        if (reducedState) {
-            dispatch({
-                type: SOME_ACTION,
-                reducedState
-            });
-        }
+        setFormState({
+            ...formState,
+            ...reducedFormState
+        });
+    };
 
-        return (
-            <form>
-                <input name="stateObj.fruit.apple" onChange={changeHandler}/>
-                <input name="stateObj.fruit.banana" onChange={changeHandler}/>
-                <input name="stateObj.foo" onChange={changeHandler}/>
-                <input name="stateObj.bar" onChange={changeHandler}/>
-                <input name="stateObj.pizza.cheese" onChange={changeHandler}/>
-                <input name="stateObj.pizza.pepperoni" onChange={changeHandler}/>
-            </form>
-        )
 
-    }
-
-```
-
-## Sample Reducer
-```
-    case SOME_ACTION:
-        return {
-            ...state,
-            ...action.reducedState
-        };
+  return (
+    <form onSubmit={submitHandler}>
+        <input type="text" name="someModel.data1" onChange={changeHandler}/>
+        <input type="text" name="someModel.data2" onChange={changeHandler}/>
+        <input type="text" name="someModel.data3" onChange={changeHandler}/>
+        <input type="text" name="someModel.data4" onChange={changeHandler}/>
+        <input type="submit"/>
+    </form>
+  )
 
 ```
 
 ## Expected Sample Data
 ```
-    stateObj = {
-        fruit: {
-            apple: "",
-            banana: ""
-        },
-        foo: "",
-        bar: "",
-        pizza: {
-            cheese: "",
-            pepperoni: ""
+    formState: {
+        someModel: {
+            data1: "",
+            data2: "",
+            data3: "",
+            data4: ""
         }
     }
 ```
