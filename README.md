@@ -2,10 +2,10 @@
 A library of components and helpers for react based forms.
 
 
-## Sample Library Usage
+## Sample Component
 
 ```
-    import {FormInput, FormResponse, reduceStates } from '../utils/ReactForms';
+    import { FormInput, FormResponse, reduceStates } from '../utils/ReactForms';
 
     const [ formState, setFormState] = useState({someModel: {}});
     const [ formResponse, setFormResponse = useState({status: undefined, message: undefined })];
@@ -83,18 +83,6 @@ A library of components and helpers for react based forms.
     }
   )
 
-```
-
-## Expected Sample Data
-```
-    formState: {
-        someModel: {
-            data1: "",
-            data2: "",
-            data3: "",
-            data4: ""
-        }
-    }
 ```
 
 ## Questions or Improvements?
