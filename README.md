@@ -1,5 +1,5 @@
 # react-forms
-A library of components and helpers for react based forms.
+A library of components and helpers for react based forms. Compenents are assembled using react-bootstrap: https://github.com/react-bootstrap/react-bootstrap
 
 
 ## Sample Component
@@ -15,7 +15,7 @@ export default function SomeComponent() {
 
   const handleChange = (e) => {
 
-    const incomingState = reduceStates(e, formState);
+    const incomingFormState = reduceStates(e, formState);
 
     setFormState({
       ...formState,
@@ -90,9 +90,10 @@ export default function SomeComponent() {
 ```
 
 ## Questions or Improvements?
-Github: https://github.com/wfknowles/react-forms<br>
+Github: https://github.com/wfknowles<br>
 Email: will@willknowles.com
 
 ## Contribution
 Made with ❤️ by Will Knowles
+
 ©️2021
