@@ -15,11 +15,11 @@ export default function SomeComponent() {
 
   const handleChange = (e) => {
 
-    const reducedFormState = reduceStates(e, formState);
+    const incomingState = reduceStates(e, formState);
 
     setFormState({
       ...formState,
-      ...reducedFormState
+      ...incomingFormState
     });
 
   };
