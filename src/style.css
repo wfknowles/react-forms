@@ -1,0 +1,52 @@
+.form-label {
+  font-weight: 500;
+}
+
+.form-group, .checkbox-group {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.checkbox-group .form-group {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.form-media {
+  display: flex;
+  flex-direction: row;
+  wrap: nowrap;
+}
+
+form .error {
+  text-align: center;
+  font-weight: 300;
+}
+
+form.light label, form.light .error {
+  color: white;
+}
+
+form.mini input {
+  margin-bottom: 12px;
+}
+
+form.mini .form-control, form.mini .error {
+  line-height: 1.2;
+  font-size: 0.9rem;
+}
+
+
+
+/* MEDIA QUERY FOR TABLETS AND LARGER */
+@media screen and (min-width: 768px) {
+
+  /* .form-media > input {
+      width: 80%;
+  }
+  
+  .form-media > button {
+      margin-left: 12px;
+      width: calc(20% - 12px);
+  } */
+}

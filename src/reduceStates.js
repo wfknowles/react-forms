@@ -1,26 +1,20 @@
-class ReactForms {
+export default function reduceStates(e, formState) { 
 
-  constructor() {
-
-    this.debug = true;
-
-  }
-
-  value(event) {
+  const value = (event) => {
 
     try {
 
-      return this.formatData(event);
+      return formatData(event);
 
     } catch (error) {
 
-      throw new SyntaxError(`ReactFormDataError: ${error}`);
+      throw new SyntaxError(`reduceStateError: ${error}`);
 
     }
     
   }
 
-  formatData(event) {
+  const formatData = (event) => {
  
     const { name, value, type } = event.target;
     let formattedData = {};
@@ -67,21 +61,21 @@ class ReactForms {
   }
 
   
-  reduce(state, formData) {
+  const reduce = (state, formData) => {
 
     try {
 
-      return this.reduceFormData(state, formData);
+      return reduceFormData(state, formData);
 
     } catch (error) {
 
-      throw new SyntaxError(`ReactFormsError: ${error}`);
+      throw new SyntaxError(`reduceStateError: ${error}`);
 
     }
     
   }
 
-  reduceFormData(state, formData) {
+  const reduceFormData = (state, formData) => {
 
     const { event, data: incomingState } = formData;
     const keys = event.target.name.split('.');
@@ -107,7 +101,7 @@ class ReactForms {
             const stateChild = stateParent[parentKey];
             const incomingStateChild = incomingStateTest[key][parentKey];
 
-            const childrenData = this.childrenDataTypeReducer(
+            const childrenData = childrenDataTypeReducer(
               stateParent,
               incomingStateParent,
               parentKey,
@@ -119,7 +113,7 @@ class ReactForms {
 
           } else {
             
-            reducedState[key] = this.dataTypeReducer(state[key], incomingState[key]);
+            reducedState[key] = dataTypeReducer(state[key], incomingState[key]);
 
           } // end if both have children
 
@@ -134,7 +128,7 @@ class ReactForms {
     return reducedState;
   }
 
-  dataTypeReducer(state, incomingState) {
+  const dataTypeReducer = (state, incomingState) => {
     const stateType = typeof state;
     const incomingStateType = typeof incomingState;
     let reducedDataByType = {};
@@ -174,7 +168,7 @@ class ReactForms {
     return reducedDataByType;
   }
 
-  childrenDataTypeReducer(stateParent, incomingStateParent, parentKey, stateChild, incomingStateChild) {
+  const childrenDataTypeReducer = (stateParent, incomingStateParent, parentKey, stateChild, incomingStateChild) => {
 
     const stateChildType = typeof stateChild;
     const incomingStateChildType = typeof incomingStateChild;
@@ -183,12 +177,12 @@ class ReactForms {
     // reduce state by child data type
     if (stateChildType === 'object' && incomingStateChildType === 'object') {
 
-      const reducedChild = this.dataTypeReducer(stateChild, incomingStateChild);
-      reducedState = this.dataTypeReducer(stateParent, {[parentKey]: reducedChild});
+      const reducedChild = dataTypeReducer(stateChild, incomingStateChild);
+      reducedState = dataTypeReducer(stateParent, {[parentKey]: reducedChild});
 
     } else if (stateChildType === 'string' && incomingStateChildType === 'string') {
 
-      reducedState = this.dataTypeReducer(stateParent, incomingStateParent);
+      reducedState = dataTypeReducer(stateParent, incomingStateParent);
 
     } else { 
 
@@ -202,6 +196,10 @@ class ReactForms {
     return reducedState;
   }
 
-}
 
-export default new ReactForms();
+  const inputData = value(e);
+  const reducedState = reduce(formState, inputData);
+
+  return reducedState;
+
+}
