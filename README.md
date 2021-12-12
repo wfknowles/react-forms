@@ -5,23 +5,26 @@ A library of components and helpers for react based forms.
 ## Sample Component
 
 ```
-    import { FormInput, FormResponse, reduceStates } from '../utils/ReactForms';
+import React, { useState } from 'react';
+import { FormInput, FormResponse, reduceStates } from '../utils/ReactForms';
 
-    const [ formState, setFormState] = useState({someModel: {}});
-    const [ formResponse, setFormResponse = useState({status: undefined, message: undefined })];
+export default function SomeComponent() {
 
-    const handleChange = (e) => {
+  const [ formState, setFormState ] = useState({someModel: {}});
+  const [ formResponse, setFormResponse ] = useState({status: undefined, message: undefined })];
 
-      const reducedFormState = reduceStates(e, formState);
+  const handleChange = (e) => {
 
-      setFormState({
-        ...formState,
-        ...reducedFormState
-      });
+    const reducedFormState = reduceStates(e, formState);
 
-    };
+    setFormState({
+      ...formState,
+      ...reducedFormState
+    });
 
-    const handleSubmit = async (e) => {
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // send formData to endpoint
@@ -45,44 +48,45 @@ A library of components and helpers for react based forms.
 
   return (
     <>
-    {
-      formResponse.status && (
-        <FormResponse status={formResponse.status} message={formResponse.message} />
-      )
-    }
-    {
-      !formResponse.status && (
-        <form onSubmit={submitHandler}>
-            <FormInput
-                type="text"
-                name="someModel.data1"
-                onChange={changeHandler}
-            >
-            <FormInput
-                type="text"
-                name="someModel.data2"
-                onChange={changeHandler}
-            >
-            <FormInput
-                type="text"
-                name="someModel.data2"
-                onChange={changeHandler}
-            >
-            <FormInput
-                type="text"
-                name="someModel.data3"
-                onChange={changeHandler}
-            >
-            <FormInput 
-                type="submit"
-                label="Send Message"
-                variant="primary"
-            />
-        </form>
-      )
-    }
+      {
+        formResponse.status && (
+          <FormResponse status={formResponse.status} message={formResponse.message} />
+        )
+      }
+      {
+        !formResponse.status && (
+          <form onSubmit={submitHandler}>
+              <FormInput
+                  type="text"
+                  name="someModel.data1"
+                  onChange={changeHandler}
+              >
+              <FormInput
+                  type="text"
+                  name="someModel.data2"
+                  onChange={changeHandler}
+              >
+              <FormInput
+                  type="text"
+                  name="someModel.data2"
+                  onChange={changeHandler}
+              >
+              <FormInput
+                  type="text"
+                  name="someModel.data3"
+                  onChange={changeHandler}
+              >
+              <FormInput 
+                  type="submit"
+                  label="Send Message"
+                  variant="primary"
+              />
+          </form>
+        )
+      }
+    </>
   )
-
+}
 ```
 
 ## Questions or Improvements?
